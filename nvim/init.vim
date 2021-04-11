@@ -29,6 +29,7 @@ set splitbelow                       " automagically split going down
 set splitright                       " automagically split going right
 set listchars=tab:▸\ ,eol:¬,trail:·  " see hidden chars and their colors
 set list
+set updatetime=100
 highlight NonText ctermfg=239
 highlight SpecialKey ctermfg=239
 
@@ -45,13 +46,15 @@ Plug 'junegunn/fzf.vim'                                   " fzf vim commands
 Plug 'morhetz/gruvbox'                                    " Color patters
 Plug 'vimwiki/vimwiki'                                    " A place for thoughts
 Plug 'tpope/vim-fugitive'                                 " Awesome git in vim
-Plug 'tpope/vim-commentary'                               " Easily commenting
+Plug 'airblade/vim-gitgutter'                             " Git gutter in vim
+Plug 'preservim/nerdcommenter'                            " Easily commenting
 Plug 'tpope/vim-surround'                                 " brace surrounding
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}         " gophers!
 Plug 'scrooloose/nerdtree'                                " Directory tree
 Plug 'vim-airline/vim-airline'                            " Lower explore bar
 Plug 'mbbill/undotree'                                    " undoing things
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }     " multi cursor drifting
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 " Colors
