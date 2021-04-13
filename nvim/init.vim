@@ -49,12 +49,12 @@ Plug 'tpope/vim-fugitive'                                 " Awesome git in vim
 Plug 'airblade/vim-gitgutter'                             " Git gutter in vim
 Plug 'preservim/nerdcommenter'                            " Easily commenting
 Plug 'tpope/vim-surround'                                 " brace surrounding
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}         " gophers!
 Plug 'scrooloose/nerdtree'                                " Directory tree
 Plug 'vim-airline/vim-airline'                            " Lower explore bar
 Plug 'mbbill/undotree'                                    " undoing things
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }     " multi cursor drifting
 Plug 'neovim/nvim-lspconfig'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " Colors
@@ -63,7 +63,7 @@ highlight Normal guibg=none
 
 " for vimwiki
 set nocompatible
-filetype plugin on
+filetype plugin indent on
 syntax on
 
 
@@ -96,4 +96,7 @@ nnoremap <leader>` <c-^>
 " Quickly open nvim init
 nnoremap <silent> <leader>ini :edit $MYVIMRC<cr>
 
+
+" Lua requires
+lua require("gopls")
 
