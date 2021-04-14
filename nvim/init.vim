@@ -53,8 +53,9 @@ Plug 'scrooloose/nerdtree'                                " Directory tree
 Plug 'vim-airline/vim-airline'                            " Lower explore bar
 Plug 'mbbill/undotree'                                    " undoing things
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }     " multi cursor drifting
-Plug 'neovim/nvim-lspconfig'
-Plug 'rust-lang/rust.vim'
+Plug 'neovim/nvim-lspconfig'                              " Nvim 0.5+ LSP client
+Plug 'nvim-lua/completion-nvim'                           " Nvim LSP completions
+Plug 'rust-lang/rust.vim'                                 " Rust-acian for life
 call plug#end()
 
 " Colors
