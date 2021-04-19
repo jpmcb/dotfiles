@@ -100,4 +100,5 @@ nnoremap <silent> <leader>ini :edit $MYVIMRC<cr>
 
 " Lua requires
 lua require("gopls")
+lua require("rls")
 
