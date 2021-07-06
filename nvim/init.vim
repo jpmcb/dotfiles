@@ -14,7 +14,6 @@ set nobackup                         " ... or a backup!
 set undodir=~/.nvim/undodir          " set a undodir
 set undofile                         " set an undofile
 set scrolloff=8                      " scroll offwidth so it's not the bottom
-set termguicolors                    " enable 24 bit colors in terminal
 set colorcolumn=80                   " bar at 80 chars
 set signcolumn=yes                   " set the bar color column always
 set nocompatible                     " no vi compatibility
@@ -30,22 +29,24 @@ set splitright                       " automagically split going right
 set listchars=tab:▸\ ,eol:¬,trail:·  " see hidden chars and their colors
 set list
 set updatetime=100
-highlight NonText ctermfg=239
-highlight SpecialKey ctermfg=239
 
 set clipboard^=unnamed               " Clipboard working with browser
 set clipboard^=unnamedplus
 
+" TODO - Tag bar
 
 "-----------------------------------------------------------------------------
 " Plugged, minimal plugin manager
 "-----------------------------------------------------------------------------
 call plug#begin('~/.nvim/plugged')
+Plug 'fatih/vim-go'                                       " Vim-go go go!
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }       " Ensure fzf
 Plug 'junegunn/fzf.vim'                                   " fzf vim commands
 Plug 'morhetz/gruvbox'                                    " Color patters
 Plug 'vimwiki/vimwiki'                                    " A place for thoughts
-Plug 'tpope/vim-fugitive'                                 " Awesome git in vim
+Plug 'tpope/vim-fugitive'                                 " The Git
+Plug 'tpope/vim-rhubarb'                                  " The Hub
 Plug 'airblade/vim-gitgutter'                             " Git gutter in vim
 Plug 'preservim/nerdcommenter'                            " Easily commenting
 Plug 'tpope/vim-surround'                                 " brace surrounding
@@ -58,14 +59,19 @@ Plug 'nvim-lua/completion-nvim'                           " Nvim LSP completions
 Plug 'rust-lang/rust.vim'                                 " Rust-acian for life
 call plug#end()
 
-" Colors
-colorscheme gruvbox
-highlight Normal guibg=none
-
 " for vimwiki
 set nocompatible
 filetype plugin indent on
 syntax on
+
+
+" ----------------------------------------------------------------------------
+" Colors / Theme
+" ----------------------------------------------------------------------------
+colorscheme gruvbox
+" Transparent colors with alacritty, gruvbox, and nvim
+" https://github.com/morhetz/gruvbox/issues/375
+autocmd VimEnter * hi Normal ctermbg=none
 
 
 " ----------------------------------------------------------------------------
@@ -97,8 +103,13 @@ nnoremap <leader>` <c-^>
 " Quickly open nvim init
 nnoremap <silent> <leader>ini :edit $MYVIMRC<cr>
 
+autocmd TextChanged,TextChangedI <buffer> silent write
 
 " Lua requires
-lua require("gopls")
 lua require("rls")
+
+set foldmethod=syntax
+set foldlevelstart=20
+
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
