@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+
+  # Install Docker
+  config.vm.provision :docker
+
+  # Set system configurations
+  config.vm.provision(
+    :shell,
+    path: 'configs/system.sh',
+    env: {TIME_ZONE: 'America/Denver'}
+  )
+
+  # Set user configurations
+  config.vm.provision(
+    :shell, 
+    path: 'configs/user.sh', 
+    privileged: false
+  )
+
+  # Use the host's ssh key to pull from git@github.com
+  config.ssh.forward_agent = true
+  config.vm.provision "file", source: "~/.ssh/id_ed25519", destination: "~/.ssh/id_ed25519"
+  config.vm.provision "file", source: "~/.ssh/id_ed25519.pub", destination: "~/.ssh/id_ed25519.pub"
+end
