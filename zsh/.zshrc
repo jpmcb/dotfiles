@@ -36,13 +36,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_CUSTOM=  ... TODO
 
 plugins=(
-  # Builtin Oh My Zsh plugins
-  direnv
-  git
-  gitfast
-  history-substring-search
-  kubectl
-  pyenv
+    asdf
+    direnv
+    git
+    gitfast
+    history-substring-search
+    kubectl
+    ripgrep
 )
 
 # 1. Load the p10k prompt
@@ -60,7 +60,26 @@ alias bat=batcat
 # Because Apple runs the world ...
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# ----- pyenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# ----- Load local secrets
+source ~/.secrets.zshrc
 
+# ----- Vim is life. Life is vim
+alias vim=nvim
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+export GIT_EDITOR="$VISUAL"
+
+# ----- Jump
+eval "$(jump shell)"
+
+# ----- Golang
+export GOBIN="$HOME/.asdf/installs/golang/1.14/go/bin"
+PATH="$PATH:$GOBIN"
+
+# ----- GPG
+export GPG_TTY=$(tty)
+
+
+# ----- Some java bullll shitttt
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"

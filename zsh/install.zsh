@@ -15,6 +15,8 @@ git clone \
 # Sym-link the .zshrc
 pushd $r
     rm -rf ~/.zshrc
+    rm -rf ~/.secrets.zshrc
     ln -s ~/workspace/dotfiles/zsh/.zshrc ~/.zshrc
+    ln -s ~/workspace/dotfiles/zsh/.secrets.zshrc ~/.secrets.zshrc
 popd
 

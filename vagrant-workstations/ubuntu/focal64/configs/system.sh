@@ -21,6 +21,8 @@ apt install -y \
   util-linux \
   vim
 
+apt-get install -y jq
+
 # Install golang
 wget https://dl.google.com/go/go1.16.6.linux-amd64.tar.gz
 tar -C /usr/local/ -xzvf go1.16.6.linux-amd64.tar.gz
