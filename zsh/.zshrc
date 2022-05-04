@@ -1,11 +1,3 @@
-# Directory where denver-ohmyzsh is installed to.
-# This is used by several custom utilities and scripts to correctly source
-# and reference other locations
-DENVER_OH_MY_ZSH="/home/jmcb/workspace/denver-ohmyzsh"
-
-# Check for any domz upgrades
-"$DENVER_OH_MY_ZSH/scripts/check-for-upgrade.zsh"
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -36,7 +28,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_CUSTOM=  ... TODO
 
 plugins=(
-    asdf
     direnv
     git
     gitfast
@@ -55,17 +46,18 @@ source "$ZSH/oh-my-zsh.sh"
 # 3. Reload completions for zsh-completions
 autoload -U compinit && compinit
 
-alias bat=batcat
-
+# Enable linuxbrew.
 # Because Apple runs the world ...
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# ----- enable batcat alias
+alias bat=batcat
 
 # ----- Load local secrets
 source ~/.secrets.zshrc
 
 # ----- Vim is life. Life is vim
 alias vim=nvim
-
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export GIT_EDITOR="$VISUAL"
@@ -74,12 +66,18 @@ export GIT_EDITOR="$VISUAL"
 eval "$(jump shell)"
 
 # ----- Golang
-export GOBIN="$HOME/.asdf/installs/golang/1.14/go/bin"
-PATH="$PATH:$GOBIN"
+export GOBIN="/home/jmcb/go/bin"
+PATH="$PATH:/usr/local/go/bin:/home/jmcb/go/bin"
 
 # ----- GPG
 export GPG_TTY=$(tty)
 
-
 # ----- Some java bullll shitttt
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+
+[[ -s "/home/jmcb/.gvm/scripts/gvm" ]] && source "/home/jmcb/.gvm/scripts/gvm"
+
+# ----- NVM, node version manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
