@@ -24,6 +24,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # It's over ten thousaaand!
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+# Starship shell prompt
+#eval "$(starship init zsh)"
+
 # Directory for custom scripts to be sourced and loaded from
 # ZSH_CUSTOM=  ... TODO
 
@@ -35,6 +38,8 @@ plugins=(
     kubectl
     ripgrep
 )
+
+export PATH="$PATH:$HOME/.local/bin"
 
 # 1. Load the p10k prompt
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
@@ -62,12 +67,12 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 export GIT_EDITOR="$VISUAL"
 
+# ----- Golang paths
+export GOBIN="$HOME/go/bin"
+export PATH="$PATH:/usr/local/go/bin:$GOBIN"
+
 # ----- Jump
 eval "$(jump shell)"
-
-# ----- Golang
-export GOBIN="/home/jmcb/go/bin"
-PATH="$PATH:/usr/local/go/bin:/home/jmcb/go/bin"
 
 # ----- GPG
 export GPG_TTY=$(tty)
