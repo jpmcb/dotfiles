@@ -28,7 +28,6 @@ plugins=(
     gitfast
     history-substring-search
     kubectl
-    ripgrep
 )
 
 export PATH="$PATH:$HOME/.local/bin"
@@ -55,10 +54,13 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 export GIT_EDITOR="$VISUAL"
 
+# ----- load brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # ----- Golang paths
 # Go recommends installing go to /usr/local
 # These env vars ensure go and it's installed binaries are installable
-export GOBIN="/home/ubuntu/.local/bin"
+export GOBIN="$HOME/.local/bin"
 export PATH="$PATH:/usr/local/go/bin:$GOBIN"
 
 # ----- Jump
@@ -74,3 +76,44 @@ export NVM_DIR="$HOME/.nvm"
 
 # ----- Source FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+
+# ----- Brew is great ... i love brew so much ...
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/jpmcb/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Zig is cool isn't it.
+export PATH="$PATH:$HOME/.local/bin/zig-master"
+
+# Fly away ... fly away little bird!
+export FLYCTL_INSTALL="/Users/jpmcb/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+. "$HOME/.cargo/env"
+
+# added by Snowflake SnowflakeCLI installer v1.0
+export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
