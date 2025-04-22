@@ -117,3 +117,21 @@ unset __conda_setup
 
 # added by Snowflake SnowflakeCLI installer v1.0
 export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/Users/jpmcb/.opam/opam-init/init.zsh' ]] || source '/Users/jpmcb/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jpmcb/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jpmcb/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jpmcb/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jpmcb/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Load Postgres binaries from brew
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
